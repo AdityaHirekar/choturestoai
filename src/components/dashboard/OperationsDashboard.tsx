@@ -368,7 +368,7 @@ export const OperationsDashboard: React.FC<OperationsDashboardProps> = ({
                   Client Landing Page &amp; Booking
                 </h3>
                 <p className="text-xs text-ink-secondary font-mono mt-1 leading-relaxed">
-                  High-converting public showcase inspired by RestroBomb, complete with 3D terrain canvas, savings calculator, and 15-min demo booking.
+                  High-converting public showcase complete with 3D terrain canvas, savings calculator, and 15-min demo booking.
                 </p>
               </div>
             </div>

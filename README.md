@@ -2,7 +2,7 @@
 
 > **The Artisanal Restaurant Operating System** — Eliminate order clutter, reclaim predatory 22% aggregator commissions, and coordinate kitchen stations with calm handwriting and voice intelligence.
 
-Inspired by [RestroBomb](https://restrobomb.com), **Chotu Restro AI** is a modern, all-in-one hospitality operating platform built for cafes, bistros, and high-volume dining establishments.
+**Chotu Restro AI** is a modern, all-in-one hospitality operating platform built for cafes, bistros, and high-volume dining establishments.
 
 ---
 
@@ -20,7 +20,7 @@ Inspired by [RestroBomb](https://restrobomb.com), **Chotu Restro AI** is a moder
   * **Dine In**: Soft blue badge + Table designation.
   * **Takeout**: Amber badge + Table designation + Pickup time countdown + takeout bag indicator.
   * **Direct Delivery**: Peach badge + Table designation + full street address display.
-  * **Online Delivery**: Pink badge + Aggregator tracking (Uber Eats, DoorDash, Grubhub, Zomato, Swiggy) with rider status and handover OTP.
+  * **Online Delivery**: Pink badge + Aggregator tracking (Swiggy, Zomato, Toing) with rider status and handover OTP.
 * **Interactive Aggregator Controls**:
   * Real-time counters for **New**, **Ongoing**, and **Done** across platforms.
   * Instant toggle switches to pause/resume ordering channels.

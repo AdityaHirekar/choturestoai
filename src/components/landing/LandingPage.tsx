@@ -309,7 +309,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               TICKET #01 · RESTAURANT OPERATING SYSTEM
             </span>
             <span className="font-hand text-badge text-2xl -rotate-2">
-              inspired by RestroBomb &amp; handcrafted for modern dining
+              handcrafted for modern high-performance dining
             </span>
           </div>
 
@@ -1389,7 +1389,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="pt-12 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-white/80">
             <div className="flex items-center gap-3">
               <span className="px-2 py-0.5 bg-white text-brand font-bold text-xs uppercase">CR·AI</span>
-              <span>Chotu Restro AI · Inspired by RestroBomb</span>
+              <span>Chotu Restro AI · Artisanal Restaurant OS</span>
             </div>
 
             <div className="flex items-center gap-6">
