@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Mic, X, Check, Sparkles, Volume2 } from "lucide-react";
+import { useVoiceWave } from "@/lib/anime";
 
 interface ChotuVoiceModalProps {
   isOpen: boolean;
@@ -20,6 +21,9 @@ export const ChotuVoiceModal: React.FC<ChotuVoiceModalProps> = ({
   const [statusText, setStatusText] = useState<string>("Listening... speak naturally in Hindi, Hinglish or English");
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
+  const waveRef = useRef<HTMLDivElement>(null);
+  useVoiceWave(waveRef, isOpen && !isProcessing);
+
   if (!isOpen) return null;
 
   const handleSimulate = (cmd: string, feedback: string) => {
@@ -35,8 +39,8 @@ export const ChotuVoiceModal: React.FC<ChotuVoiceModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-ink/30 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-canvas-card border border-border w-full max-w-lg rounded-none shadow-2xl p-6 space-y-6">
+    <div className="fixed inset-0 z-50 bg-ink/30 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-quick">
+      <div className="bg-canvas-card border border-border w-full max-w-lg rounded-none shadow-2xl p-6 space-y-6 animate-modal-in">
         
         {/* Modal Top */}
         <div className="flex items-center justify-between pb-4 border-b border-border">
@@ -57,15 +61,16 @@ export const ChotuVoiceModal: React.FC<ChotuVoiceModalProps> = ({
           </button>
         </div>
 
-        {/* Ambient Waveform Card */}
-        <div className="bg-canvas-subtle border border-border p-5 text-center space-y-3">
-          <div className="flex items-center justify-center gap-1.5 h-7">
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.1s" }}></span>
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.3s" }}></span>
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.15s" }}></span>
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.45s" }}></span>
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.2s" }}></span>
-            <span className="w-1 bg-accent animate-voice-wave" style={{ animationDelay: "0.35s" }}></span>
+        {/* Ambient Waveform Card with Anime.js Dynamic Audio Equalizer */}
+        <div className="bg-canvas-subtle border border-border p-5 text-center space-y-3 rounded">
+          <div ref={waveRef} className="flex items-center justify-center gap-1.5 h-10">
+            {[...Array(14)].map((_, i) => (
+              <span
+                key={i}
+                className="voice-bar w-1 bg-brand rounded-full h-8 origin-bottom inline-block"
+                style={{ transform: "scaleY(0.2)" }}
+              />
+            ))}
           </div>
 
           <div>

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { KOT } from "@/types/restaurant";
 import { Check, Clock, Volume2, VolumeX, RotateCcw, CheckCheck, Flame } from "lucide-react";
+import { useStaggerEntrance } from "@/lib/anime";
 
 interface KitchenDisplayProps {
   kots: KOT[];
@@ -19,6 +20,9 @@ export const KitchenDisplay: React.FC<KitchenDisplayProps> = ({
   const [stationFilter, setStationFilter] = useState<string>("all");
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+
+  const gridRef = useRef<HTMLDivElement>(null);
+  useStaggerEntrance(gridRef, ".kds-ticket", [viewMode, stationFilter]);
 
   const toggleItemCheck = (key: string) => {
     setCheckedItems((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -127,13 +131,13 @@ export const KitchenDisplay: React.FC<KitchenDisplayProps> = ({
 
       {/* Tickets Grid */}
       {currentList.length === 0 ? (
-        <div className="py-20 text-center text-xs font-mono text-ink-secondary border border-border bg-canvas-card">
+        <div className="py-20 text-center text-xs font-mono text-ink-secondary border border-border bg-canvas-card rounded">
           {viewMode === "active"
             ? "All kitchen orders completed. Ready for incoming tickets."
             : "No completed tickets in this station filter."}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {currentList.map((kot) => {
             const isCompleted = kot.status === "bumped";
             const isLate = kot.elapsedSeconds > 720 && !isCompleted;
@@ -145,12 +149,12 @@ export const KitchenDisplay: React.FC<KitchenDisplayProps> = ({
             return (
               <div
                 key={kot.id}
-                className={`bg-canvas-card border shadow-sm flex flex-col justify-between transition-all ${
+                className={`kds-ticket bg-canvas-card border shadow-sm flex flex-col justify-between transition-all rounded overflow-hidden ${
                   isCompleted 
                     ? "border-border opacity-90" 
                     : isLate 
-                    ? "border-dietary-nonveg" 
-                    : "border-border"
+                    ? "border-dietary-nonveg shadow-md" 
+                    : "border-border hover:border-brand/40"
                 }`}
               >
                 <div>

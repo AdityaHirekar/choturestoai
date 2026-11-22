@@ -30,25 +30,26 @@
   --color-topography: #D95D39;     /* Burnt Terracotta Contour Lines */
 }
 
-[data-theme="warm-dining"] {
-  /* Theme 2: Artisanal Warm Cream + Tomato Red & Golden Amber */
-  --color-surface: #FFFBF5;        /* Warm Cream */
-  --color-surface-subtle: #F7F1E7; /* Light Biscuit */
-  --color-surface-card: #FFFFFF;   /* Crisp White */
-  --color-primary: #E23E2D;        /* Tomato Red */
-  --color-primary-hover: #C52E1F;
-  --color-primary-faint: rgba(226, 62, 45, 0.08);
-  --color-secondary: #FFB800;      /* Golden Amber */
-  --color-secondary-hover: #E5A500;
-  --color-secondary-faint: rgba(255, 184, 0, 0.12);
-  --color-text: #231F20;           /* Charcoal */
-  --color-text-secondary: #5C5556;
-  --color-text-faint: #968F90;
-  --color-border: #E8DFD3;
-  --color-border-subtle: #F2EBE0;
-  --color-border-strong: #D6CABA;
-  --color-hero-bg: #1E1614;
-  --color-topography: #FFB800;
+[data-theme="chalk-forest"], [data-theme="warm-dining"] {
+  /* Theme 2: Chalk, Stone & Forest (Crisp, Fresh & Tech-Forward) */
+  --color-surface: #F7F8F7;        /* Chalk White (60% Background) */
+  --color-surface-subtle: #F0F2F1; /* Subtle Chalk Tint */
+  --color-surface-card: #EAECEB;   /* Cool Stone (30% Cards / Surface) */
+  --color-surface-elevated: #FFFFFF; /* Clean contrast for badges & tickets */
+  --color-primary: #1E6B52;        /* Deep Emerald (10% Pop Accent CTAs/Badges) */
+  --color-primary-hover: #175440;  /* Deep Emerald Hover */
+  --color-primary-faint: rgba(30, 107, 82, 0.08);
+  --color-secondary: #1E6B52;      /* Deep Emerald */
+  --color-secondary-hover: #175440;
+  --color-secondary-faint: rgba(30, 107, 82, 0.12);
+  --color-text: #161A18;           /* Charcoal Ink (Primary Text) */
+  --color-text-secondary: #5C6661; /* Slate Grey (Secondary / Muted Text) */
+  --color-text-faint: #8A9691;
+  --color-border: #D8DDD9;        /* Cool Stone Border */
+  --color-border-subtle: #E4E8E5;
+  --color-border-strong: #BFC7C1;
+  --color-hero-bg: #0F1714;        /* Deep Forest Charcoal */
+  --color-topography: #1E6B52;     /* Deep Emerald Contour Lines */
 }
 
 [data-theme="fresh-cafe"] {
@@ -72,25 +73,93 @@
   --color-topography: #2F9E44;
 }
 
-[data-theme="high-volume-slate"] {
-  /* Theme 3: Slate Neutral + Bold Coral/Orange */
-  --color-surface: #FFFFFF;        /* Clean White */
-  --color-surface-subtle: #F4F5F7; /* Subtle Light-Gray Cards */
-  --color-surface-card: #FFFFFF;
-  --color-primary: #EA580C;        /* Energetic Coral/Orange */
-  --color-primary-hover: #C2410C;
-  --color-primary-faint: rgba(234, 88, 12, 0.08);
-  --color-secondary: #1E293B;      /* Deep Navy / Slate */
-  --color-secondary-hover: #0F172A;
-  --color-secondary-faint: rgba(30, 41, 59, 0.10);
-  --color-text: #0F172A;           /* Slate Charcoal */
-  --color-text-secondary: #475569;
-  --color-text-faint: #94A3B8;
-  --color-border: #E2E8F0;
-  --color-border-subtle: #F1F5F9;
-  --color-border-strong: #CBD5E1;
-  --color-hero-bg: #0F172A;
-  --color-topography: #EA580C;
+[data-theme="obsidian-amber"], [data-theme="high-volume-slate"] {
+  /* Theme 4: Obsidian & Warm Amber (Dark Mode & High-Impact) */
+  --color-surface: #121212;        /* Obsidian Charcoal (60% Background) */
+  --color-surface-subtle: #18181A; /* Subtle Smoked Surface */
+  --color-surface-card: #1E1E20;   /* Smoked Slate (30% Cards / Surface) */
+  --color-surface-elevated: #28282C; /* Clean contrast for badges & tickets */
+  --color-primary: #E5A93C;        /* Warm Amber Gold (10% Pop Accent CTAs/Badges) */
+  --color-primary-hover: #D49528;  /* Deep Amber Gold Hover */
+  --color-primary-faint: rgba(229, 169, 60, 0.12);
+  --color-secondary: #E5A93C;      /* Warm Amber Gold */
+  --color-secondary-hover: #D49528;
+  --color-secondary-faint: rgba(229, 169, 60, 0.16);
+  --color-text: #F5F2EB;           /* Warm Ivory (Primary Text) */
+  --color-text-secondary: #A09E97; /* Ash Grey (Secondary / Muted Text) */
+  --color-text-faint: #6E6C66;
+  --color-border: #2E2E32;        /* Dark Slate Border */
+  --color-border-subtle: #242428;
+  --color-border-strong: #3E3E44;
+  --color-hero-bg: #0A0A0A;        /* Deep Obsidian */
+  --color-topography: #E5A93C;     /* Warm Amber Gold Contour Lines */
+}
+
+/* High-contrast rules for bright Amber Gold in Obsidian & Warm Amber theme */
+/* 1. Amber Gold buttons and badges: Dark charcoal text and icons for 9:1 AAA contrast */
+[data-theme="obsidian-amber"] button.bg-brand,
+[data-theme="obsidian-amber"] a.bg-brand,
+[data-theme="obsidian-amber"] [data-variant="primary"],
+[data-theme="obsidian-amber"] span.bg-brand,
+[data-theme="obsidian-amber"] div.bg-brand.rounded-xs,
+[data-theme="high-volume-slate"] button.bg-brand,
+[data-theme="high-volume-slate"] a.bg-brand,
+[data-theme="high-volume-slate"] [data-variant="primary"],
+[data-theme="high-volume-slate"] span.bg-brand,
+[data-theme="high-volume-slate"] div.bg-brand.rounded-xs {
+  color: #121212 !important;
+}
+
+[data-theme="obsidian-amber"] button.bg-brand *,
+[data-theme="obsidian-amber"] a.bg-brand *,
+[data-theme="obsidian-amber"] [data-variant="primary"] *,
+[data-theme="high-volume-slate"] button.bg-brand *,
+[data-theme="high-volume-slate"] a.bg-brand *,
+[data-theme="high-volume-slate"] [data-variant="primary"] * {
+  color: #121212 !important;
+  stroke: #121212 !important;
+}
+
+/* 2. Amber Gold section text: Direct headings, paragraphs, and list items have dark charcoal text */
+[data-theme="obsidian-amber"] section.bg-brand h1,
+[data-theme="obsidian-amber"] section.bg-brand h2,
+[data-theme="obsidian-amber"] section.bg-brand h3,
+[data-theme="obsidian-amber"] section.bg-brand p,
+[data-theme="obsidian-amber"] section.bg-brand span:not(button span),
+[data-theme="obsidian-amber"] footer.bg-brand h1,
+[data-theme="obsidian-amber"] footer.bg-brand h2,
+[data-theme="obsidian-amber"] footer.bg-brand h3,
+[data-theme="obsidian-amber"] footer.bg-brand p,
+[data-theme="obsidian-amber"] footer.bg-brand span:not(button span),
+[data-theme="high-volume-slate"] section.bg-brand h1,
+[data-theme="high-volume-slate"] section.bg-brand h2,
+[data-theme="high-volume-slate"] section.bg-brand h3,
+[data-theme="high-volume-slate"] section.bg-brand p,
+[data-theme="high-volume-slate"] footer.bg-brand h1,
+[data-theme="high-volume-slate"] footer.bg-brand h2,
+[data-theme="high-volume-slate"] footer.bg-brand h3,
+[data-theme="high-volume-slate"] footer.bg-brand p {
+  color: #121212 !important;
+}
+
+/* 3. Dark surface controls: NEVER allow buttons/cards/inputs with dark backgrounds to inherit dark text */
+[data-theme="obsidian-amber"] [data-variant="secondary"],
+[data-theme="obsidian-amber"] button.bg-black,
+[data-theme="obsidian-amber"] button.bg-\[\#121212\],
+[data-theme="high-volume-slate"] [data-variant="secondary"],
+[data-theme="high-volume-slate"] button.bg-black,
+[data-theme="high-volume-slate"] button.bg-\[\#121212\] {
+  color: #F5F2EB !important;
+}
+
+[data-theme="obsidian-amber"] [data-variant="secondary"] *,
+[data-theme="obsidian-amber"] button.bg-black *,
+[data-theme="obsidian-amber"] button.bg-\[\#121212\] *,
+[data-theme="high-volume-slate"] [data-variant="secondary"] *,
+[data-theme="high-volume-slate"] button.bg-black *,
+[data-theme="high-volume-slate"] button.bg-\[\#121212\] * {
+  color: #F5F2EB !important;
+  stroke: #F5F2EB !important;
 }
 
 @layer base {
@@ -212,6 +281,69 @@
 
 .btn-reactive:hover {
   transform: translateY(-1.5px);
+}
+
+/* GPU-Accelerated Hardware Smooth Animations (Zero-Jank Curves) */
+@keyframes smoothFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes smoothFadeInQuick {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modalZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.97, 0.97, 1) translate3d(0, 4px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideDownAlert {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: smoothFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-fade-quick {
+  animation: smoothFadeInQuick 0.15s ease-out both;
+  will-change: opacity;
+}
+
+.animate-modal-in {
+  animation: modalZoomIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-slide-down {
+  animation: slideDownAlert 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 .btn-reactive:active {

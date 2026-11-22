@@ -12,6 +12,7 @@ export interface MenuItem {
   station: "tandoor" | "curry" | "bar" | "pantry";
   inStock: boolean;
   stockCount?: number;
+  imageUrl?: string;
 }
 
 export type TableStatus = "vacant" | "occupied" | "billed" | "reserved";
@@ -60,7 +61,7 @@ export interface VoiceIntent {
   timestamp: string;
 }
 
-export type OrderMode = "dine-in" | "takeaway" | "delivery" | "zomato" | "swiggy" | "ubereats" | "doordash";
+export type OrderMode = "dine-in" | "takeaway" | "delivery" | "zomato" | "swiggy" | "toing";
 
 export interface LiveOrder {
   id: string;
@@ -73,7 +74,7 @@ export interface LiveOrder {
   tableId?: string;
   deliveryAddress?: string;
   aggregatorDetails?: {
-    platform: "zomato" | "swiggy" | "ubereats" | "doordash" | "grubhub";
+    platform: "zomato" | "swiggy" | "toing" | "direct";
     orderId: string;
     riderName?: string;
     riderStatus?: string;
@@ -86,7 +87,7 @@ export interface LiveOrder {
 
 export interface AggregatorChannel {
   id: string;
-  platform: "zomato" | "swiggy" | "direct" | "ubereats" | "doordash" | "grubhub";
+  platform: "zomato" | "swiggy" | "toing" | "direct";
   displayName: string;
   isOpen: boolean;
   newCount: number;

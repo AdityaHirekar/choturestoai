@@ -8,6 +8,7 @@ import { IntelligenceHub } from "@/components/ai/IntelligenceHub";
 import { ChotuVoiceModal } from "@/components/voice/ChotuVoiceModal";
 import { LiveOrdersHub } from "@/components/orders/LiveOrdersHub";
 import { LandingPage } from "@/components/landing/LandingPage";
+import { OperationsDashboard } from "@/components/dashboard/OperationsDashboard";
 import { 
   INITIAL_TABLES, 
   INITIAL_KOTS, 
@@ -16,13 +17,13 @@ import {
   INITIAL_AGGREGATORS 
 } from "@/data/mockData";
 import { Table, KOT, OrderItem, MenuItem, LiveOrder, AggregatorChannel } from "@/types/restaurant";
-import { Mic, CheckCircle2, Sparkles } from "lucide-react";
+import { Mic, CheckCircle2, Sparkles, LayoutDashboard, Store, ShoppingBag, ChefHat, QrCode } from "lucide-react";
 
-export type ThemeMode = "warm-terracotta" | "warm-dining" | "fresh-cafe" | "high-volume-slate";
+export type ThemeMode = "warm-terracotta" | "chalk-forest" | "warm-dining" | "fresh-cafe" | "obsidian-amber" | "high-volume-slate";
 
 export default function Home() {
   const [theme, setTheme] = useState<ThemeMode>("warm-terracotta");
-  const [activeTab, setActiveTab] = useState<"landing" | "pos" | "orders" | "kds" | "qr" | "intelligence">("pos");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "landing" | "pos" | "orders" | "kds" | "qr" | "intelligence">("dashboard");
   const [tables, setTables] = useState<Table[]>(INITIAL_TABLES);
   const [selectedTableId, setSelectedTableId] = useState<string>("T-04");
   const [kots, setKots] = useState<KOT[]>(INITIAL_KOTS);
@@ -220,65 +221,81 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Clean Navigation Tabs */}
-              <nav className="flex items-center gap-1.5 text-xs font-mono">
+              {/* Clean Segmented Navigation Tabs */}
+              <nav className="flex items-center gap-1 text-xs font-mono bg-canvas border border-border p-1 rounded-lg shadow-2xs">
                 <button
-                  onClick={() => setActiveTab("landing")}
-                  className="px-3.5 py-1.5 font-bold transition-all text-brand hover:text-brand-hover hover:bg-brand/10 flex items-center gap-1.5 rounded active:scale-95 cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-brand" />
-                  <span>Book Demo</span>
-                </button>
-                <div className="h-4 w-[1px] bg-border mx-1"></div>
-                <button
-                  onClick={() => setActiveTab("pos")}
-                  className={`px-3.5 py-1.5 font-medium transition-all rounded active:scale-95 cursor-pointer ${
-                    activeTab === "pos"
+                  onClick={() => setActiveTab("dashboard")}
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
+                    activeTab === "dashboard"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                   }`}
                 >
-                  Terminal
+                  <LayoutDashboard className="w-3.5 h-3.5" />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab("pos")}
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
+                    activeTab === "pos"
+                      ? "bg-brand text-white font-bold shadow-xs"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
+                  }`}
+                >
+                  <Store className="w-3.5 h-3.5" />
+                  <span>Terminal</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("orders")}
-                  className={`px-3.5 py-1.5 font-medium transition-all rounded active:scale-95 cursor-pointer ${
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "orders"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                   }`}
                 >
-                  Orders &amp; Delivery
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>Orders</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("kds")}
-                  className={`px-3.5 py-1.5 font-medium transition-all rounded active:scale-95 cursor-pointer ${
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "kds"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                   }`}
                 >
-                  Kitchen
+                  <ChefHat className="w-3.5 h-3.5" />
+                  <span>Kitchen</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("qr")}
-                  className={`px-3.5 py-1.5 font-medium transition-all rounded active:scale-95 cursor-pointer ${
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "qr"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                   }`}
                 >
-                  Guest Menu
+                  <QrCode className="w-3.5 h-3.5" />
+                  <span>Guest Menu</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("intelligence")}
-                  className={`px-3.5 py-1.5 font-medium transition-all rounded active:scale-95 cursor-pointer ${
+                  className={`px-3 py-1.5 font-medium transition-all rounded-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "intelligence"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                   }`}
                 >
-                  AI Insights
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>AI Insights</span>
+                </button>
+                <div className="h-4 w-[1px] bg-border mx-1"></div>
+                <button
+                  onClick={() => setActiveTab("landing")}
+                  className="px-3 py-1.5 font-bold transition-all flex items-center gap-1.5 rounded-md active:scale-95 cursor-pointer text-brand hover:text-white hover:bg-brand border border-brand/30"
+                >
+                  <span>Book Demo</span>
+                  <span className="text-[10px]">↗</span>
                 </button>
               </nav>
 
@@ -288,10 +305,10 @@ export default function Home() {
                 <div className="hidden md:flex items-center bg-canvas border border-border p-1 rounded-full text-[10px] font-mono gap-0.5">
                   <button
                     onClick={() => setTheme("warm-terracotta")}
-                    className={`px-2 py-0.5 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
+                    className={`px-2.5 py-1 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
                       theme === "warm-terracotta"
                         ? "bg-brand text-white font-bold shadow-xs"
-                        : "text-ink-secondary hover:text-ink"
+                        : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                     }`}
                     title="Warm Espresso & Terracotta"
                   >
@@ -299,23 +316,23 @@ export default function Home() {
                     <span>Terracotta</span>
                   </button>
                   <button
-                    onClick={() => setTheme("warm-dining")}
-                    className={`px-2 py-0.5 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
-                      theme === "warm-dining"
+                    onClick={() => setTheme("chalk-forest")}
+                    className={`px-2.5 py-1 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
+                      theme === "chalk-forest" || theme === "warm-dining"
                         ? "bg-brand text-white font-bold shadow-xs"
-                        : "text-ink-secondary hover:text-ink"
+                        : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                     }`}
-                    title="Warm Cream"
+                    title="Chalk, Stone & Forest (Crisp, Fresh & Tech-Forward)"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E23E2D]"></span>
-                    <span>Cream</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1E6B52]"></span>
+                    <span>Chalk & Forest</span>
                   </button>
                   <button
                     onClick={() => setTheme("fresh-cafe")}
-                    className={`px-2 py-0.5 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
+                    className={`px-2.5 py-1 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
                       theme === "fresh-cafe"
                         ? "bg-brand text-white font-bold shadow-xs"
-                        : "text-ink-secondary hover:text-ink"
+                        : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                     }`}
                     title="Clean Minimal + Fresh Green"
                   >
@@ -323,16 +340,16 @@ export default function Home() {
                     <span>Café</span>
                   </button>
                   <button
-                    onClick={() => setTheme("high-volume-slate")}
-                    className={`px-2 py-0.5 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
-                      theme === "high-volume-slate"
+                    onClick={() => setTheme("obsidian-amber")}
+                    className={`px-2.5 py-1 transition-all rounded-full flex items-center gap-1 cursor-pointer ${
+                      theme === "obsidian-amber" || theme === "high-volume-slate"
                         ? "bg-brand text-white font-bold shadow-xs"
-                        : "text-ink-secondary hover:text-ink"
+                        : "text-ink-secondary hover:text-ink hover:bg-canvas-card"
                     }`}
-                    title="Slate Neutral + Bold Coral"
+                    title="Obsidian & Warm Amber (Dark Mode & High-Impact)"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span>
-                    <span>Slate</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E5A93C]"></span>
+                    <span>Obsidian</span>
                   </button>
                 </div>
 
@@ -345,9 +362,9 @@ export default function Home() {
 
                 <button
                   onClick={() => setVoiceModalOpen(true)}
-                  className="flex items-center gap-2 px-3.5 py-1.5 border border-border hover:border-brand hover:text-brand bg-canvas transition-all active:scale-95 rounded text-xs font-medium text-ink shadow-2xs cursor-pointer select-none"
+                  className="flex items-center gap-2 px-3.5 py-1.5 border-2 border-brand/40 hover:border-brand hover:bg-brand hover:text-white text-brand bg-brand/5 transition-all duration-150 active:scale-95 rounded-md text-xs font-bold shadow-2xs hover:shadow-xs cursor-pointer select-none"
                 >
-                  <Mic className="w-3.5 h-3.5 text-brand" />
+                  <Mic className="w-3.5 h-3.5 text-brand group-hover:text-white" />
                   <span>Ask Chotu</span>
                 </button>
               </div>
@@ -357,7 +374,7 @@ export default function Home() {
 
           {/* Toast Notification */}
           {toastMessage && (
-            <div className="fixed bottom-6 right-6 z-50 bg-ink text-canvas px-4 py-2.5 text-xs font-medium shadow-lg flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-150">
+            <div className="fixed bottom-6 right-6 z-50 bg-ink text-canvas px-4 py-2.5 text-xs font-medium shadow-lg flex items-center gap-2 animate-fade-in">
               <CheckCircle2 className="w-4 h-4 text-dietary-veg" />
               <span>{toastMessage}</span>
             </div>
@@ -370,49 +387,68 @@ export default function Home() {
             onExecuteCommand={handleExecuteVoiceCommand}
           />
 
-          {/* Main Surface Screen */}
-          <main className="flex-1 flex flex-col">
-            {activeTab === "pos" && (
-              <PosTerminal
-                tables={tables}
-                selectedTableId={selectedTableId}
-                onSelectTable={setSelectedTableId}
-                ledgerItems={ledgerItems}
-                onAddDish={handleAddDish}
-                onChangeQty={handleChangeQty}
-                onRemoveItem={handleRemoveItem}
-                onTransmitKot={handleTransmitKot}
-                onSendWhatsApp={handleSendWhatsApp}
-                onSettleBill={handleSettleBill}
-              />
-            )}
+          {/* Main Surface Screen with Silky Smooth Hardware Transition */}
+          <main className="flex-1 flex flex-col min-h-0">
+            <div key={activeTab} className="animate-fade-in flex-1 flex flex-col min-h-0">
+              {activeTab === "dashboard" && (
+                <OperationsDashboard
+                  tables={tables}
+                  orders={liveOrders}
+                  kots={kots}
+                  channels={aggregatorChannels}
+                  onNavigate={(tab) => setActiveTab(tab)}
+                  onOpenVoice={() => setVoiceModalOpen(true)}
+                  onToggleChannel={handleToggleChannel}
+                />
+              )}
 
-            {activeTab === "orders" && (
-              <LiveOrdersHub
-                orders={liveOrders}
-                channels={aggregatorChannels}
-                onToggleChannel={handleToggleChannel}
-                onUpdateOrderStatus={handleUpdateOrderStatus}
-              />
-            )}
+              {activeTab === "pos" && (
+                <PosTerminal
+                  tables={tables}
+                  selectedTableId={selectedTableId}
+                  onSelectTable={setSelectedTableId}
+                  ledgerItems={ledgerItems}
+                  onAddDish={handleAddDish}
+                  onChangeQty={handleChangeQty}
+                  onRemoveItem={handleRemoveItem}
+                  onTransmitKot={handleTransmitKot}
+                  onSendWhatsApp={handleSendWhatsApp}
+                  onSettleBill={handleSettleBill}
+                  onExecuteVoiceCommand={handleExecuteVoiceCommand}
+                  onOpenVoiceModal={() => setVoiceModalOpen(true)}
+                />
+              )}
 
-            {activeTab === "kds" && (
-              <KitchenDisplay
-                kots={kots}
-                onBumpKot={handleBumpKot}
-                onRecallKot={handleRecallKot}
-              />
-            )}
+              {activeTab === "orders" && (
+                <LiveOrdersHub
+                  orders={liveOrders}
+                  channels={aggregatorChannels}
+                  onToggleChannel={handleToggleChannel}
+                  onUpdateOrderStatus={handleUpdateOrderStatus}
+                />
+              )}
 
-            {activeTab === "qr" && <CustomerMenu />}
+              {activeTab === "kds" && (
+                <KitchenDisplay
+                  kots={kots}
+                  onBumpKot={handleBumpKot}
+                  onRecallKot={handleRecallKot}
+                />
+              )}
 
-            {activeTab === "intelligence" && <IntelligenceHub />}
+              {activeTab === "qr" && <CustomerMenu />}
+
+              {activeTab === "intelligence" && <IntelligenceHub />}
+            </div>
           </main>
 
-          {/* Minimalist Footer */}
+          {/* Clean Footer */}
           <footer className="border-t border-border bg-canvas px-4 lg:px-8 py-3 flex items-center justify-between text-xs text-ink-secondary font-mono">
             <div>Chotu Restro AI • The Spice Junction</div>
-            <div className="text-[11px] text-ink-faint">Swiss Minimalist Architectural Design</div>
+            <div className="text-[11px] text-ink-secondary flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-dietary-veg"></span>
+              <span>All Systems Operational</span>
+            </div>
           </footer>
         </>
       )}

@@ -51,8 +51,7 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
       return (
         order.mode === "zomato" ||
         order.mode === "swiggy" ||
-        order.mode === "ubereats" ||
-        order.mode === "doordash" ||
+        order.mode === "toing" ||
         Boolean(order.aggregatorDetails)
       );
     }
@@ -191,13 +190,13 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
                 : "text-brand bg-brand/10 border border-brand/20 hover:bg-brand/15"
             }`}
           >
-            Delivery Apps (Uber Eats · DoorDash · Zomato)
+            Delivery Apps (Swiggy · Zomato · Toing)
           </button>
         </ClickSpark>
       </div>
 
-      {/* Main Multi-Channel Orders Table (Matching the Reference Screenshot) */}
-      <div className="bg-canvas-card border border-border rounded-lg shadow-sm overflow-hidden">
+      {/* Main Multi-Channel Orders Table with Hardware-Accelerated Smooth Transition */}
+      <div key={`${viewMode}-${modeFilter}`} className="bg-canvas-card border border-border rounded-lg shadow-sm overflow-hidden animate-fade-in">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <tbody className="divide-y divide-border/60">
@@ -210,8 +209,7 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
               ) : (
                 filteredOrders.map((ord) => {
                   const isOnline =
-                    ord.mode === "ubereats" ||
-                    ord.mode === "doordash" ||
+                    ord.mode === "toing" ||
                     ord.mode === "zomato" ||
                     ord.mode === "swiggy" ||
                     Boolean(ord.aggregatorDetails);
@@ -302,14 +300,12 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
                         {isOnline && (
                           <div className="space-y-0.5 text-xs font-mono">
                             <div className="font-semibold text-ink">
-                              {ord.mode === "ubereats" || ord.aggregatorDetails?.platform === "ubereats"
-                                ? "Uber Eats"
-                                : ord.mode === "doordash" || ord.aggregatorDetails?.platform === "doordash"
-                                ? "DoorDash"
-                                : ord.mode === "swiggy"
+                              {ord.mode === "swiggy" || ord.aggregatorDetails?.platform === "swiggy"
                                 ? "Swiggy"
+                                : ord.mode === "toing" || ord.aggregatorDetails?.platform === "toing"
+                                ? "Toing"
                                 : "Zomato"}{" "}
-                              - {ord.aggregatorDetails?.orderId || "MNHLAW3L"}
+                              - {ord.aggregatorDetails?.orderId || "ZOM-LK9910"}
                             </div>
                             <div className="text-[11px] text-ink-secondary">
                               {ord.aggregatorDetails?.riderStatus || "Placed"}
@@ -327,7 +323,7 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
                       {/* Column 5: Amount */}
                       <td className="py-4 px-4 text-right whitespace-nowrap align-middle">
                         <span className="text-xs font-bold font-mono text-ink">
-                          $ {ord.totalAmount.toFixed(2)}
+                          ₹ {ord.totalAmount.toFixed(2)}
                         </span>
                       </td>
 
@@ -482,78 +478,74 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
                 <div className="w-10"></div>
               </div>
 
-              {/* Aggregator Rows */}
+              {/* Aggregator Rows: Swiggy, Zomato, Toing */}
               <div className="space-y-4">
                 
-                {/* Row 1: Uber Eats (1 / 0 / 0) */}
+                {/* Row 1: Swiggy (1 / 1 / 14) */}
                 <div className="flex items-center justify-between gap-3">
                   <div className="w-24 shrink-0 flex items-center">
-                    <div className="w-9 h-9 bg-black rounded-lg flex flex-col items-center justify-center text-white shadow-xs p-0.5">
-                      <span className="text-[7px] font-bold leading-tight tracking-tight">Uber</span>
-                      <span className="text-[8px] font-black leading-tight text-[#06C167]">Eats</span>
+                    <div className="w-9 h-9 bg-[#FC8019] rounded-lg flex flex-col items-center justify-center text-white shadow-xs p-0.5">
+                      <span className="text-[9px] font-black tracking-tight uppercase leading-none">SWIG</span>
+                      <span className="text-[7px] font-bold leading-tight">GY</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-[#1E1B18] flex-1 justify-center pr-3">
+                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-ink flex-1 justify-center pr-3">
                     <span className="w-8">1</span>
-                    <span className="w-12">0</span>
-                    <span className="w-8">0</span>
+                    <span className="w-12">1</span>
+                    <span className="w-8">14</span>
                   </div>
 
                   <button
-                    onClick={() => onToggleChannel("agg-ubereats")}
+                    onClick={() => onToggleChannel("agg-swiggy")}
                     className="w-10 h-5.5 rounded-full bg-[#10B981] p-0.5 transition-all btn-reactive active:scale-90 cursor-pointer shrink-0 shadow-xs flex items-center justify-end"
-                    title="Toggle Uber Eats"
+                    title="Toggle Swiggy"
                   >
                     <span className="w-4.5 h-4.5 rounded-full bg-white block shadow-sm transform transition-transform"></span>
                   </button>
                 </div>
 
-                {/* Row 2: DoorDash (0 / 1 / 0) */}
+                {/* Row 2: Zomato (2 / 2 / 18) */}
                 <div className="flex items-center justify-between gap-3">
                   <div className="w-24 shrink-0 flex items-center">
-                    <div className="w-9 h-9 bg-white border border-[#E8E4DF] rounded-lg flex items-center justify-center shadow-xs p-1">
-                      <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#FF3008] fill-current">
-                        <path d="M23.071 8.411a6.071 6.071 0 0 0-5.42-3.328H1.667A1.667 1.667 0 0 0 0 6.75v.083a1.667 1.667 0 0 0 1.667 1.667h16.03a3.571 3.571 0 0 1 3.571 3.571c0 1.705-1.198 3.13-2.802 3.488l-4.71 1.05a1.667 1.667 0 1 0 .727 3.253l4.71-1.05A6.072 6.072 0 0 0 23.07 8.411Z" />
-                      </svg>
+                    <div className="w-9 h-9 bg-[#E23744] rounded-lg flex items-center justify-center text-white shadow-xs p-0.5">
+                      <span className="text-[10px] font-black tracking-tighter italic">zomato</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-[#1E1B18] flex-1 justify-center pr-3">
+                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-ink flex-1 justify-center pr-3">
+                    <span className="w-8">2</span>
+                    <span className="w-12">2</span>
+                    <span className="w-8">18</span>
+                  </div>
+
+                  <button
+                    onClick={() => onToggleChannel("agg-zomato")}
+                    className="w-10 h-5.5 rounded-full bg-[#10B981] p-0.5 transition-all btn-reactive active:scale-90 cursor-pointer shrink-0 shadow-xs flex items-center justify-end"
+                    title="Toggle Zomato"
+                  >
+                    <span className="w-4.5 h-4.5 rounded-full bg-white block shadow-sm transform transition-transform"></span>
+                  </button>
+                </div>
+
+                {/* Row 3: Toing (0 / 1 / 6) */}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="w-24 shrink-0 flex items-center">
+                    <div className="w-9 h-9 bg-[#7C3AED] rounded-lg flex items-center justify-center text-white shadow-xs p-0.5">
+                      <span className="text-[10px] font-black tracking-tight uppercase">TOING</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-ink flex-1 justify-center pr-3">
                     <span className="w-8">0</span>
                     <span className="w-12">1</span>
-                    <span className="w-8">0</span>
+                    <span className="w-8">6</span>
                   </div>
 
                   <button
-                    onClick={() => onToggleChannel("agg-doordash")}
+                    onClick={() => onToggleChannel("agg-toing")}
                     className="w-10 h-5.5 rounded-full bg-[#10B981] p-0.5 transition-all btn-reactive active:scale-90 cursor-pointer shrink-0 shadow-xs flex items-center justify-end"
-                    title="Toggle DoorDash"
-                  >
-                    <span className="w-4.5 h-4.5 rounded-full bg-white block shadow-sm transform transition-transform"></span>
-                  </button>
-                </div>
-
-                {/* Row 3: Grubhub / Delivery App (0 / 0 / 1) */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="w-24 shrink-0 flex items-center">
-                    <div className="w-9 h-9 bg-[#F36805] rounded-lg flex items-center justify-center text-white shadow-xs p-1.5">
-                      <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-                        <path d="M12 3L2 12h3v8h5v-6h4v6h5v-8h3L12 3zm-2 9H8v-2h2v2zm6 0h-2v-2h2v2z" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-6 sm:gap-7 text-center font-mono text-sm font-bold text-[#1E1B18] flex-1 justify-center pr-3">
-                    <span className="w-8">0</span>
-                    <span className="w-12">0</span>
-                    <span className="w-8">1</span>
-                  </div>
-
-                  <button
-                    onClick={() => onToggleChannel("agg-grubhub")}
-                    className="w-10 h-5.5 rounded-full bg-[#10B981] p-0.5 transition-all btn-reactive active:scale-90 cursor-pointer shrink-0 shadow-xs flex items-center justify-end"
-                    title="Toggle Grubhub"
+                    title="Toggle Toing"
                   >
                     <span className="w-4.5 h-4.5 rounded-full bg-white block shadow-sm transform transition-transform"></span>
                   </button>
@@ -707,7 +699,7 @@ export const LiveOrdersHub: React.FC<LiveOrdersHubProps> = ({
               </div>
               <div className="flex justify-between pt-2 border-t border-border font-bold text-sm">
                 <span>Total Amount:</span>
-                <span className="font-mono text-ink">$ {selectedOrder.totalAmount.toFixed(2)}</span>
+                <span className="font-mono text-ink">₹ {selectedOrder.totalAmount.toFixed(2)}</span>
               </div>
             </div>
 

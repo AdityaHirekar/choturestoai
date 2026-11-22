@@ -62,9 +62,9 @@ Engineered with modern hospitality aesthetics using the **60-30-10 rule**:
 
 ### Switchable Theme Modes
 1. **Warm Espresso & Terracotta** (Default): Cafes, bistros, and full-service dining.
-2. **Warm Cream & Tomato Red**: High-energy pizzerias and family restaurants.
+2. **Chalk, Stone & Forest**: Crisp, fresh & tech-forward for inventory, KDS, and analytics.
 3. **Clean Minimal & Fresh Green**: Salad bars, healthy bowls, and breakfast cafes.
-4. **Slate Neutral & Bold Coral**: High-volume QSRs, bars, and QR drive-thrus.
+4. **Obsidian & Warm Amber** (Dark Mode): Bar/lounge POS systems, upscale dining tech, and dark-mode command centers.
 
 ---
 

@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { ClickSpark } from './ClickSpark';
 
 export interface ReactiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'inverted';
   size?: 'sm' | 'md' | 'lg';
   enableSpark?: boolean;
   sparkColor?: string;
@@ -27,34 +27,44 @@ export const ReactiveButton: React.FC<ReactiveButtonProps> = ({
 }) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  // Determine variant styling with guaranteed high contrast & crisp visibility
+  // Guaranteed high contrast, rock-solid legibility & tactile React Bits physics
   let variantClasses = '';
   let defaultSparkColor = '#D95D39';
 
   switch (variant) {
     case 'primary':
       variantClasses =
-        'bg-brand text-white border border-brand/90 shadow-sm hover:bg-brand-hover hover:shadow active:scale-[0.98] active:translate-y-0.5';
+        'bg-brand text-white border border-brand/90 shadow-xs hover:bg-brand-hover hover:shadow-md hover:-translate-y-[1px] active:scale-[0.97] active:translate-y-[1px]';
       defaultSparkColor = '#FFFFFF';
       break;
     case 'secondary':
       variantClasses =
-        'bg-[#EFECE6] text-[#1E1B18] border border-[#DDD6CC] shadow-sm hover:bg-[#E5E0D8] hover:border-[#C4BCB3] active:scale-[0.98] active:translate-y-0.5';
+        'bg-canvas-card text-ink border-2 border-border-strong hover:bg-canvas hover:border-ink hover:text-ink shadow-xs hover:shadow active:scale-[0.97] active:translate-y-[1px]';
       defaultSparkColor = '#D95D39';
       break;
     case 'outline':
       variantClasses =
-        'bg-transparent text-current border border-current/30 hover:bg-white/10 active:scale-[0.98] active:translate-y-0.5';
+        'bg-transparent text-ink border-2 border-border-strong hover:border-brand hover:text-brand hover:bg-brand/5 shadow-2xs hover:shadow-xs active:scale-[0.97] active:translate-y-[1px]';
+      defaultSparkColor = '#D95D39';
+      break;
+    case 'success':
+      variantClasses =
+        'bg-[#E7F7ED] text-[#126E3A] border-2 border-[#86D6A5] hover:bg-[#D4EFE0] hover:border-[#48BB78] hover:text-[#0E542C] shadow-xs hover:shadow active:scale-[0.97] active:translate-y-[1px]';
+      defaultSparkColor = '#25D366';
+      break;
+    case 'inverted':
+      variantClasses =
+        'bg-white text-[#1E1B18] border-2 border-white hover:bg-[#FAF8F5] hover:border-[#FAF8F5] shadow-md hover:shadow-lg active:scale-[0.97] active:translate-y-[1px]';
       defaultSparkColor = '#D95D39';
       break;
     case 'ghost':
       variantClasses =
-        'bg-transparent text-ink hover:bg-canvas-subtle border border-transparent active:scale-[0.98] active:translate-y-0.5';
+        'bg-transparent text-ink hover:bg-canvas-subtle border border-transparent active:scale-[0.97] active:translate-y-[1px]';
       defaultSparkColor = '#D95D39';
       break;
     case 'danger':
       variantClasses =
-        'bg-[#DC2626] text-white border border-red-700 shadow-sm hover:bg-[#B91C1C] active:scale-[0.98] active:translate-y-0.5';
+        'bg-[#DC2626] text-white border border-red-700 shadow-xs hover:bg-[#B91C1C] active:scale-[0.97] active:translate-y-[1px]';
       defaultSparkColor = '#FFFFFF';
       break;
   }
@@ -78,6 +88,7 @@ export const ReactiveButton: React.FC<ReactiveButtonProps> = ({
       ref={buttonRef}
       disabled={disabled}
       onClick={onClick}
+      data-variant={variant}
       className={`
         relative select-none font-mono uppercase tracking-tight font-bold rounded
         transition-all duration-150 ease-out cursor-pointer

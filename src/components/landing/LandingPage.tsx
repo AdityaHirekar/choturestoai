@@ -32,7 +32,7 @@ import { ReactiveButton } from "@/components/animations/ReactiveButton";
 import { Magnet } from "@/components/animations/Magnet";
 import { ClickSpark } from "@/components/animations/ClickSpark";
 
-export type ThemeMode = "warm-terracotta" | "warm-dining" | "fresh-cafe" | "high-volume-slate";
+export type ThemeMode = "warm-terracotta" | "chalk-forest" | "warm-dining" | "fresh-cafe" | "obsidian-amber" | "high-volume-slate";
 
 interface LandingPageProps {
   onLaunchLiveDemo?: () => void;
@@ -140,34 +140,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Refined Navigation Links (Clean text links with hover state) */}
-          <nav className="hidden md:flex items-center gap-6 text-xs font-mono">
+          <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
             <button
               onClick={() => scrollToSection("about-statement")}
-              className="text-ink-secondary hover:text-ink font-medium uppercase tracking-tight transition-colors py-1 cursor-pointer"
+              className="px-3 py-1.5 text-ink-secondary hover:text-ink hover:bg-canvas-subtle font-medium uppercase tracking-tight rounded transition-all active:scale-95 cursor-pointer"
             >
               System
             </button>
             <button
               onClick={() => scrollToSection("features-method")}
-              className="text-ink-secondary hover:text-ink font-medium uppercase tracking-tight transition-colors py-1 cursor-pointer"
+              className="px-3 py-1.5 text-ink-secondary hover:text-ink hover:bg-canvas-subtle font-medium uppercase tracking-tight rounded transition-all active:scale-95 cursor-pointer"
             >
               Pillars
             </button>
             <button
               onClick={() => scrollToSection("roi-calculator")}
-              className="text-ink-secondary hover:text-ink font-medium uppercase tracking-tight transition-colors py-1 cursor-pointer"
+              className="px-3 py-1.5 text-ink-secondary hover:text-ink hover:bg-canvas-subtle font-medium uppercase tracking-tight rounded transition-all active:scale-95 cursor-pointer"
             >
               Economics
             </button>
             <button
               onClick={() => scrollToSection("pricing")}
-              className="text-ink-secondary hover:text-ink font-medium uppercase tracking-tight transition-colors py-1 cursor-pointer"
+              className="px-3 py-1.5 text-ink-secondary hover:text-ink hover:bg-canvas-subtle font-medium uppercase tracking-tight rounded transition-all active:scale-95 cursor-pointer"
             >
               ₹ 6,500/Yr
             </button>
             <button
               onClick={() => scrollToSection("book-demo-form")}
-              className="h-[32px] px-4 bg-brand text-white hover:bg-brand-hover uppercase text-xs font-mono font-bold tracking-tight rounded transition-all shadow-xs flex items-center gap-1.5 active:scale-95 cursor-pointer"
+              className="h-[34px] px-4 bg-brand text-white hover:bg-brand-hover uppercase text-xs font-mono font-bold tracking-tight rounded transition-all shadow-xs hover:shadow flex items-center gap-1.5 active:scale-95 cursor-pointer ml-1"
             >
               <span>Book Demo</span>
               <span className="text-[10px]">↗</span>
@@ -183,7 +183,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   className={`px-2.5 py-1 rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     currentTheme === "warm-terracotta"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle/50"
                   }`}
                   title="Warm Espresso & Terracotta"
                 >
@@ -191,23 +191,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <span>Terracotta</span>
                 </button>
                 <button
-                  onClick={() => onSelectTheme("warm-dining")}
+                  onClick={() => onSelectTheme("chalk-forest")}
                   className={`px-2.5 py-1 rounded-full transition-all flex items-center gap-1 cursor-pointer ${
-                    currentTheme === "warm-dining"
+                    currentTheme === "chalk-forest" || currentTheme === "warm-dining"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle/50"
                   }`}
-                  title="Warm Cream"
+                  title="Chalk, Stone & Forest (Crisp, Fresh & Tech-Forward)"
                 >
-                  <span className="w-2 h-2 rounded-full bg-[#E23E2D] shrink-0"></span>
-                  <span>Cream</span>
+                  <span className="w-2 h-2 rounded-full bg-[#1E6B52] shrink-0"></span>
+                  <span>Chalk & Forest</span>
                 </button>
                 <button
                   onClick={() => onSelectTheme("fresh-cafe")}
                   className={`px-2.5 py-1 rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     currentTheme === "fresh-cafe"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle/50"
                   }`}
                   title="Fresh Café"
                 >
@@ -215,16 +215,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <span>Café</span>
                 </button>
                 <button
-                  onClick={() => onSelectTheme("high-volume-slate")}
+                  onClick={() => onSelectTheme("obsidian-amber")}
                   className={`px-2.5 py-1 rounded-full transition-all flex items-center gap-1 cursor-pointer ${
-                    currentTheme === "high-volume-slate"
+                    currentTheme === "obsidian-amber" || currentTheme === "high-volume-slate"
                       ? "bg-brand text-white font-bold shadow-xs"
-                      : "text-ink-secondary hover:text-ink"
+                      : "text-ink-secondary hover:text-ink hover:bg-canvas-subtle/50"
                   }`}
-                  title="Slate / Coral"
+                  title="Obsidian & Warm Amber (Dark Mode & High-Impact)"
                 >
-                  <span className="w-2 h-2 rounded-full bg-[#EA580C] shrink-0"></span>
-                  <span>Slate</span>
+                  <span className="w-2 h-2 rounded-full bg-[#E5A93C] shrink-0"></span>
+                  <span>Obsidian</span>
                 </button>
               </div>
             )}
@@ -232,15 +232,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {onLaunchLiveDemo && (
               <button
                 onClick={onLaunchLiveDemo}
-                className="h-[32px] px-3.5 border border-border hover:border-brand text-ink hover:text-brand bg-canvas-card hover:bg-canvas text-xs font-mono uppercase font-bold tracking-tight rounded flex items-center gap-1.5 transition-all active:scale-95 shadow-2xs cursor-pointer"
+                className="h-[34px] px-3.5 border-2 border-brand/50 hover:border-brand text-brand hover:text-white hover:bg-brand bg-brand/5 text-xs font-mono uppercase font-bold tracking-tight rounded flex items-center gap-1.5 transition-all duration-150 active:scale-95 shadow-2xs hover:shadow-xs cursor-pointer"
               >
-                <Play className="w-3 h-3 text-brand" />
+                <Play className="w-3 h-3 text-brand group-hover:text-white" />
                 <span>Live Sandbox</span>
               </button>
             )}
             <button
               onClick={() => scrollToSection("book-demo-form")}
-              className="h-[32px] px-3.5 bg-brand text-white font-bold text-xs font-mono uppercase rounded md:hidden hover:bg-brand-hover shadow-xs active:scale-95 cursor-pointer"
+              className="h-[34px] px-3.5 bg-brand text-white font-bold text-xs font-mono uppercase rounded md:hidden hover:bg-brand-hover shadow-xs active:scale-95 cursor-pointer"
             >
               Book Demo
             </button>
@@ -273,9 +273,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 ? "#D95D39"
                 : currentTheme === "fresh-cafe"
                 ? "#2F9E44"
-                : currentTheme === "high-volume-slate"
-                ? "#EA580C"
-                : "#FFB800"
+                : currentTheme === "chalk-forest" || currentTheme === "warm-dining"
+                ? "#1E6B52"
+                : "#E5A93C"
             }
             lineCount={24}
             lineWidth={1.2}
@@ -324,9 +324,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     ? "#D95D39"
                     : currentTheme === "fresh-cafe"
                     ? "#2F9E44"
-                    : currentTheme === "high-volume-slate"
-                    ? "#EA580C"
-                    : "#FFB800"
+                    : currentTheme === "chalk-forest" || currentTheme === "warm-dining"
+                    ? "#1E6B52"
+                    : "#E5A93C"
                 }
               />
             </h1>
@@ -335,26 +335,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          {/* Handwritten Annotation Fragment beside CTA */}
-          <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          {/* High-Contrast Interactive CTA Buttons */}
+          <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-5">
             <ReactiveButton
               variant="primary"
               size="lg"
               onClick={() => scrollToSection("book-demo-form")}
-              rightIcon={<ArrowRight className="w-4 h-4 text-white" />}
+              rightIcon={<ArrowRight className="w-4 h-4" />}
               className="shadow-xl"
             >
               Book a 15-Minute Live Walkthrough
             </ReactiveButton>
 
             {onLaunchLiveDemo && (
-              <button
+              <ReactiveButton
+                variant="inverted"
+                size="lg"
                 onClick={onLaunchLiveDemo}
-                className="h-[48px] px-7 bg-white/10 hover:bg-white text-white hover:text-[#1E1B18] border-2 border-white/50 hover:border-white text-xs sm:text-sm font-mono uppercase font-bold tracking-tight rounded flex items-center gap-2.5 transition-all duration-150 active:scale-[0.98] active:translate-y-0.5 shadow-lg backdrop-blur-xs cursor-pointer select-none"
+                leftIcon={<Play className="w-3.5 h-3.5 text-brand fill-brand" />}
+                className="shadow-xl"
               >
-                <Play className="w-3.5 h-3.5 text-badge fill-badge" />
-                <span>Explore Interactive POS Sandbox</span>
-              </button>
+                Explore Interactive POS Sandbox
+              </ReactiveButton>
             )}
 
             <div className="font-hand text-[#FFFBF5]/90 text-2xl rotate-1 sm:ml-2">
@@ -581,13 +583,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="px-2 py-0.5 bg-brand text-white uppercase text-[10px] font-bold">PILLAR 05</span>
-                <span className="text-ink-secondary">Zomato + Swiggy + Direct</span>
+                <span className="text-ink-secondary">Swiggy + Zomato + Toing</span>
               </div>
               <h3 className="text-xl font-extralight tracking-tight uppercase text-ink font-sans">
                 Multi-Channel Delivery Hub
               </h3>
               <p className="text-xs text-ink-secondary font-mono leading-relaxed">
-                Consolidate Zomato, Swiggy, Direct Web, and takeaway orders into one quiet table. Manage rider arrival OTPs, dispatch in-house riders, or toggle store open/pause status with one click.
+                Consolidate Swiggy, Zomato, Toing, Direct Web, and takeaway orders into one quiet table. Manage rider arrival OTPs, dispatch in-house riders, or toggle store open/pause status with one click.
               </p>
             </div>
             <div className="pt-3 border-t border-border flex items-center justify-between text-xs font-mono">
@@ -637,9 +639,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 ? "#D95D39"
                 : currentTheme === "fresh-cafe"
                 ? "#2F9E44"
-                : currentTheme === "high-volume-slate"
-                ? "#EA580C"
-                : "#FFB800"
+                : currentTheme === "chalk-forest" || currentTheme === "warm-dining"
+                ? "#1E6B52"
+                : "#E5A93C"
             }
             lineCount={22}
             lineWidth={1.2}
@@ -705,7 +707,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-mono">
-                  <span className="uppercase text-ink-secondary">Aggregator Share (Zomato / Swiggy):</span>
+                  <span className="uppercase text-ink-secondary">Aggregator Share (Swiggy / Zomato / Toing):</span>
                   <span className="font-bold text-base text-brand">{aggregatorShare}%</span>
                 </div>
                 <input
@@ -777,15 +779,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </div>
               </div>
 
-              <ReactiveButton
-                variant="secondary"
-                size="lg"
+              <button
                 onClick={() => scrollToSection("book-demo-form")}
-                rightIcon={<ArrowRight className="w-4 h-4 text-ink" />}
-                className="w-full text-ink font-bold shadow-md"
+                className="w-full h-[48px] bg-[#121212] hover:bg-black text-[#F5F2EB] hover:text-white border border-black/30 rounded font-mono font-bold text-xs uppercase tracking-tight flex items-center justify-center gap-2 shadow-md transition-all active:scale-95 cursor-pointer"
               >
-                Protect Your Margins • Book Demo
-              </ReactiveButton>
+                <span>Protect Your Margins • Book Demo</span>
+                <ArrowRight className="w-4 h-4 text-[#F5F2EB]" />
+              </button>
             </div>
 
           </div>
@@ -1094,7 +1094,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   variant="primary"
                   size="lg"
                   disabled={isSubmitting}
-                  rightIcon={<ArrowRight className="w-4 h-4 text-white" />}
+                  rightIcon={<ArrowRight className="w-4 h-4" />}
                   className="w-full sm:w-auto px-10 shadow-xl"
                 >
                   {isSubmitting ? "CONFIRMING SLOT..." : "CONFIRM 15-MINUTE LIVE DEMO"}
@@ -1254,15 +1254,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
             </div>
 
-            <ReactiveButton
-              variant="secondary"
-              size="lg"
+            <button
               onClick={() => scrollToSection("book-demo-form")}
-              rightIcon={<ArrowRight className="w-4 h-4 text-ink" />}
-              className="w-full text-ink font-bold shadow-xl"
+              className="w-full h-[48px] bg-[#121212] hover:bg-black text-[#F5F2EB] hover:text-white border border-black/30 rounded font-mono font-bold text-xs sm:text-sm uppercase tracking-tight flex items-center justify-center gap-2 shadow-xl transition-all active:scale-95 cursor-pointer"
             >
-              Book 15-Min Demo &amp; Start Free Trial
-            </ReactiveButton>
+              <span>Book 15-Min Demo &amp; Start Free Trial</span>
+              <ArrowRight className="w-4 h-4 text-[#F5F2EB]" />
+            </button>
           </SpotlightCard>
 
           {/* Legacy Comparison: Card */}
@@ -1372,21 +1370,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Compact Newsletter / Consultation Field (45px) */}
-          <div className="max-w-md mx-auto flex">
+          <div className="max-w-md mx-auto flex shadow-lg rounded overflow-hidden border border-black/30">
             <input
               type="tel"
               placeholder="Enter your WhatsApp number (+91)"
-              className="flex-1 h-[45px] px-4 bg-white/10 border border-white/40 text-white placeholder-white/50 text-xs font-mono focus:outline-none focus:border-white"
+              className="flex-1 h-[45px] px-4 bg-[#121212] text-[#F5F2EB] placeholder-gray-400 text-xs font-mono focus:outline-none focus:bg-black"
             />
-            <ReactiveButton
-              variant="secondary"
-              size="md"
+            <button
               onClick={() => scrollToSection("book-demo-form")}
-              rightIcon={<ArrowRight className="w-3.5 h-3.5 text-ink" />}
-              className="text-ink font-bold shrink-0"
+              className="h-[45px] px-6 bg-black hover:bg-[#1E1E20] text-[#F5F2EB] hover:text-white font-mono font-bold text-xs uppercase tracking-tight flex items-center gap-2 shrink-0 transition-all active:scale-95 cursor-pointer border-l border-white/10"
             >
-              SCHEDULE
-            </ReactiveButton>
+              <span>SCHEDULE</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#F5F2EB]" />
+            </button>
           </div>
 
           {/* Lower Strip */}
